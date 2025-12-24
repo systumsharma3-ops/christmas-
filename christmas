@@ -1,0 +1,123 @@
+h1{
+  color:#e63946;
+  margin-bottom:8px;
+}
+
+h2{
+  color:#ff4d6d;
+  margin-bottom:20px;
+}
+
+#text{
+  font-size:16px;
+  color:#333;
+  min-height:60px;
+  line-height:1.5;
+  animation: fade 0.8s ease;
+}
+
+@keyframes fade{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+button{
+  margin-top:25px;
+  background:linear-gradient(135deg,#ff4d6d,#ff758f);
+  border:none;
+  color:white;
+  padding:12px 24px;
+  border-radius:30px;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.heart{
+  position:absolute;
+  color:#ff4d6d;
+  font-size:14px;
+  animation: float linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(110vh);opacity:1}
+  to{transform:translateY(-10vh);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>🎄 Merry Christmas</h1>
+  <h2>Bhumi ji ❤️</h2>
+
+  <div id="text">
+    Christmas thoda special hai…<br>
+    kyunki aap ho ✨
+  </div>
+
+  <button onclick="nextMessage()">💖 Next</button>
+</div>
+
+<audio id="music">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+</audio>
+
+<script>
+const messages = [
+ "Christmas lights cute hoti hain…<br>par aap unse zyada bright ho ✨",
+
+ "Santa se wish nahi maangi,<br>kyunki aap mil gaye 🎁",
+
+ "Thand ka season hai,<br>par aapka vibe warm hai ❄️❤️",
+
+ "Agar Christmas ek feeling hoti,<br>toh uska naam Bhumi hota ✨",
+
+ "Snowfall slow hota hai,<br>par aapka effect instant hai 💫",
+
+ "Cake, lights, songs sab theek hai,<br>par smile aapki unbeatable hai 😊",
+
+ "Winter nights long hoti hain,<br>isliye aapki yaad kaafi lagti hai 🌙",
+
+ "Merry Christmas bolna formal hai,<br>par aap special ho 🎄❤️"
+];
+
+let i = 0;
+
+function nextMessage(){
+  const text = document.getElementById("text");
+  const music = document.getElementById("music");
+
+  text.style.animation="none";
+  void text.offsetWidth;
+  text.style.animation="fade 0.8s ease";
+
+  text.innerHTML = messages[i];
+  i = (i + 1) % messages.length;
+
+  music.play();
+}
+
+function hearts(){
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.animationDuration = (3 + Math.random()*3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),6000);
+}
+
+setInterval(hearts,400);
+</script>
+
+</body>
+</html>
